@@ -44,4 +44,8 @@ export class UserDao {
   ): Promise<void> {
     await User.findOneAndUpdate({ _id: userId }, { userName: newUserName });
   }
+
+  public async deleteAccount(userId: string): Promise<void> {
+    await User.findOneAndDelete({ _id: userId });
+  }
 }

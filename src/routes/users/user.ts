@@ -5,6 +5,7 @@ import { isUserNameValid } from '../../middleWares/isUserNameValid';
 import { verifyPassword } from '../../middleWares/verifyPassword';
 import { modifyPassword } from './controllers/modifyPassword';
 import { modifyUserName } from './controllers/modifyUserName';
+import { deleteAccount } from './controllers/deleteAccount';
 import { verifyToken } from '../../middleWares/verifyToken';
 import { generateToken } from '../../middleWares/generateToken';
 
@@ -13,5 +14,6 @@ router.post('/signup', isUserNameValid, generateToken, userSignup);
 router.get('/login', verifyPassword, userLogin);
 router.patch('/:id/password', verifyToken, verifyPassword, modifyPassword);
 router.patch('/:id/userName', verifyToken, verifyPassword, modifyUserName);
+router.delete('/:id/deleteAccount', verifyToken, verifyPassword, deleteAccount);
 
 export default router;
