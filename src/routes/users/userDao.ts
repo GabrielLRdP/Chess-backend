@@ -37,4 +37,11 @@ export class UserDao {
       { salt: newSalt, hash: newHash }
     );
   }
+
+  public async updateUserName(
+    userId: string,
+    newUserName: string
+  ): Promise<void> {
+    await User.findOneAndUpdate({ _id: userId }, { userName: newUserName });
+  }
 }
