@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserDao } from '../routes/users/userDao';
+import { UserDao } from '../routes/user/userDao';
 import { SHA256 } from 'crypto-js';
 import encBase64 from 'crypto-js/enc-base64';
 

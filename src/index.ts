@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import userRoute from './routes/users/user';
+import userRoute from './routes/user/route';
 
 mongoose.connect('mongodb://localhost:27017/Chess');
 
