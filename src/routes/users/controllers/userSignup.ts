@@ -7,7 +7,7 @@ export const userSignup = async (req: Request, res: Response) => {
     const { userName, salt, hash, token } = req.body;
     await userDao.createUser(userName, salt, hash, token);
 
-    res.status(200).json({ message: 'Create User' });
+    res.status(200).json({ message: 'Created User' });
   } catch (error) {
     res.status(500).json({ error: error });
   }

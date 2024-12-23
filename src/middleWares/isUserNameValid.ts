@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { User } from '../models/User';
 import { UserDao } from '../routes/users/userDao';
 
-export const isUserNAmeValid = async (
+export const isUserNameValid = async (
   req: Request,
   res: Response,
   next: NextFunction
