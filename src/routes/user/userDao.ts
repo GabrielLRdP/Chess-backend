@@ -10,15 +10,22 @@ export class UserDao {
     salt: string,
     hash: string,
     token: string
-  ): Promise<void> {
-    const user = new User({
-      userName: userName,
-      hash: hash,
-      salt: salt,
-      token: token,
-    });
+  ): Promise<any> {
+    try {
+      const user = new User({
+        userName: userName,
+        hash: hash,
+        salt: salt,
+        token: token,
+      });
 
-    await user.save();
+      const res = await user.save();
+      return {
+        ...user,
+      };
+    } catch (error) {
+      throw error;
+    }
   }
   public async getTokenById(
     userId: string
