@@ -13,12 +13,12 @@ export const verifyToken = async (
   const dbToken = await userService.getTokenByUserId(userId);
 
   if (!userToken) {
-    res.status(401).json(`Vous devez vous authentifier`);
+    res.status(401).json(`Not authenticated`);
     return;
   }
 
   if (!dbToken) {
-    res.status(401).json(`Mauvais Id fournit`);
+    res.status(401).json(`Wrong id`);
     return;
   }
 
@@ -26,7 +26,7 @@ export const verifyToken = async (
   console.log('userToken', userToken);
 
   if (dbToken !== userToken) {
-    res.status(401).json(`Le token n'est pas valide`);
+    res.status(401).json(`Unauthorized token`);
     return;
   }
 

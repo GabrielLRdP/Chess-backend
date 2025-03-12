@@ -13,7 +13,7 @@ export const updatePassword = async (req: Request, res: Response) => {
     const newSalt = uid2(16);
     const newHash = SHA256(newRawPassword + newSalt).toString(encBase64);
     await userService.updatePassword(userId, newSalt, newHash);
-    res.status(200).json('Mot de passe mis à jour');
+    res.status(200).json('Updated password');
   } catch (error) {
     res.status(500).json(error);
   }

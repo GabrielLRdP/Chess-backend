@@ -11,7 +11,7 @@ export const isUserNameValid = async (
   const { userName } = req.body;
   const userIndDb = await userService.getUserByUserName(userName);
   if (userIndDb) {
-    res.status(409).json({ message: "Ce nom d'utilisateur est déjà utilisé" });
+    res.status(409).json({ message: 'This userName already exist' });
     return;
   }
   next();

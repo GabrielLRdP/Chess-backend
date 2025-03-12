@@ -8,7 +8,7 @@ export const modifyUserName = async (req: Request, res: Response) => {
     const userId = req.params.id;
     const newUserName = req.body.userName;
     await userService.updateUserName(userId, newUserName);
-    res.status(200).json('Pseudo mis à jour');
+    res.status(200).json('UpdatedUserName');
   } catch (error) {
     res.status(500).json(error);
   }

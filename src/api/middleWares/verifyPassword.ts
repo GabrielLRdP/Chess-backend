@@ -14,14 +14,14 @@ export const verifyPassword = async (
   const userInDb = await userService.getUserByUserName(userName);
 
   if (userInDb === null) {
-    res.status(400).json("Impossible de trouver ce nom d'utilisateur");
+    res.status(400).json("Can't find this user");
     return;
   }
   const salt = userInDb.salt;
   const hash = userInDb.hash;
   const newHash = SHA256(password + salt).toString(encBase64);
   if (hash !== newHash) {
-    res.status(401).json('Le mot de passe est erroné');
+    res.status(401).json('Wrong password');
     return;
   }
   req.body.userData = userInDb;
