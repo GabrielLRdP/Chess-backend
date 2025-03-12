@@ -1,15 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserDao } from '../routes/user/userDao';
+import { UserService } from '../../application/services/usersService';
+import { UserRepository } from '../../infrastructure/repositories/userRepository';
 
 export const verifyToken = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const userDao = new UserDao();
+  const userService = new UserService(new UserRepository());
   const userId = req.params.id;
   const userToken = req.headers['authorization']?.split(' ')[1];
-  const dbToken = await userDao.getTokenById(userId);
+  const dbToken = await userService.getTokenByUserId(userId);
 
   if (!userToken) {
     res.status(401).json(`Vous devez vous authentifier`);

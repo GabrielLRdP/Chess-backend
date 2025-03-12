@@ -1,0 +1,19 @@
+import express from 'express';
+import { userSignup } from '../../controllers/userSignup';
+import { userLogin } from '../../controllers/userLogin';
+import { isUserNameValid } from '../../middleWares/isUserNameValid';
+import { verifyPassword } from '../../middleWares/verifyPassword';
+import { updatePassword } from '../../controllers/modifyPassword';
+import { modifyUserName } from '../../controllers/modifyUserName';
+import { deleteAccount } from '../../controllers/deleteAccount';
+import { verifyToken } from '../../middleWares/verifyToken';
+import { generateToken } from '../../middleWares/generateToken';
+
+const router = express.Router();
+router.post('/signup', isUserNameValid, generateToken, userSignup);
+router.get('/login', verifyPassword, userLogin);
+router.patch('/:id/password', verifyToken, updatePassword);
+router.patch('/:id/userName', verifyToken, isUserNameValid, modifyUserName);
+router.delete('/:id/deleteAccount', verifyToken, deleteAccount);
+
+export default router;

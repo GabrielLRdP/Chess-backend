@@ -13,8 +13,10 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@types/cors": "^2.8.17",
     "@types/crypto-js": "^4.2.2",
     "@types/uid2": "^0.0.2",
+    "cors": "^2.8.5",
     "crypto-js": "^4.2.0",
     "mongoose": "^8.9.2",
     "uid2": "^1.0.0"

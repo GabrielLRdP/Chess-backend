@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserDao } from '../routes/user/userDao';
+import { UserService } from '../../application/services/usersService';
+import { UserRepository } from '../../infrastructure/repositories/userRepository';
 import { SHA256 } from 'crypto-js';
 import encBase64 from 'crypto-js/enc-base64';
 
@@ -8,9 +9,9 @@ export const verifyPassword = async (
   res: Response,
   next: NextFunction
 ) => {
-  const userDao = new UserDao();
+  const userService = new UserService(new UserRepository());
   const { userName, password } = req.body;
-  const userInDb = await userDao.getByUserName(userName);
+  const userInDb = await userService.getUserByUserName(userName);
 
   if (userInDb === null) {
     res.status(400).json("Impossible de trouver ce nom d'utilisateur");

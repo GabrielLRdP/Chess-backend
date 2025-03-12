@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
-import { UserDao } from '../userDao';
+import { UserService } from '../../application/services/usersService';
+import { UserRepository } from '../../infrastructure/repositories/userRepository';
 
 export const deleteAccount = async (req: Request, res: Response) => {
   try {
+    const userService = new UserService(new UserRepository());
     const userId = req.params.id;
-    const userDao = new UserDao();
-    await userDao.deleteAccount(userId);
+    await userService.deleteAccount(userId);
     res.status(200).json('Le compte a été supprimé');
   } catch (error) {
     res.status(500).json(error);

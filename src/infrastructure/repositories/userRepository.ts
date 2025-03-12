@@ -1,8 +1,9 @@
-import { User, IUser } from '../../models/User';
+import { UserModel, IUser } from '../database/models/User';
+import { User } from '../../domain/entities/User';
 
-export class UserDao {
+export class UserRepository {
   public async getByUserName(userName: string): Promise<IUser | null> {
-    return await User.findOne({ userName: userName });
+    return await UserModel.findOne({ userName: userName });
   }
 
   public async createUser(
@@ -12,25 +13,29 @@ export class UserDao {
     token: string
   ): Promise<any> {
     try {
-      const user = new User({
+      const user = new UserModel({
         userName: userName,
         hash: hash,
         salt: salt,
         token: token,
       });
 
-      const res = await user.save();
-      return {
-        ...user,
-      };
+      const savedUser = await user.save();
+      return new User(
+        savedUser.id,
+        savedUser.userName,
+        savedUser.hash,
+        savedUser.salt,
+        savedUser.token
+      );
     } catch (error) {
       throw error;
     }
   }
-  public async getTokenById(
+  public async getTokenByUserId(
     userId: string
   ): Promise<IUser['token'] | undefined> {
-    const userData = await User.findById<IUser>(userId);
+    const userData = await UserModel.findById<IUser>(userId);
     return userData?.token;
   }
 
@@ -39,7 +44,7 @@ export class UserDao {
     newSalt: string,
     newHash: string
   ): Promise<void> {
-    await User.findOneAndUpdate(
+    await UserModel.findOneAndUpdate(
       { _id: userId },
       { salt: newSalt, hash: newHash }
     );
@@ -49,10 +54,13 @@ export class UserDao {
     userId: string,
     newUserName: string
   ): Promise<void> {
-    await User.findOneAndUpdate({ _id: userId }, { userName: newUserName });
+    await UserModel.findOneAndUpdate(
+      { _id: userId },
+      { userName: newUserName }
+    );
   }
 
   public async deleteAccount(userId: string): Promise<void> {
-    await User.findOneAndDelete({ _id: userId });
+    await UserModel.findOneAndDelete({ _id: userId });
   }
 }
