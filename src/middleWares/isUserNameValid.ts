@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserService } from '../../application/services/usersService';
-import { UserRepository } from '../../infrastructure/repositories/userRepository';
+import { UserService } from '../application/services/usersService';
+import { UserRepository } from '../infrastructure/repositories/userRepository';
 
 export const isUserNameValid = async (
   req: Request,

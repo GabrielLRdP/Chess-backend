@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserService } from '../../application/services/usersService';
-import { UserRepository } from '../../infrastructure/repositories/userRepository';
+import { UserService } from '../application/services/usersService';
+import { UserRepository } from '../infrastructure/repositories/userRepository';
 import { SHA256 } from 'crypto-js';
 import encBase64 from 'crypto-js/enc-base64';
 

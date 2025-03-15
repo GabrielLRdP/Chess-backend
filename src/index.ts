@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import usersRoute from './api/routes/users/routes';
+import usersRoute from './api/http/routes/users/routes';
 import cors from 'cors';
 mongoose.connect('mongodb://localhost:27017/Chess');
 

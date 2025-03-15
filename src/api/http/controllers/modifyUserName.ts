@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { UserService } from '../../application/services/usersService';
-import { UserRepository } from '../../infrastructure/repositories/userRepository';
+import { UserService } from '../../../application/services/usersService';
+import { UserRepository } from '../../../infrastructure/repositories/userRepository';
 
 export const modifyUserName = async (req: Request, res: Response) => {
   try {

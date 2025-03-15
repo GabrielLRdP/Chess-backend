@@ -10,17 +10,12 @@ export class UserService {
     return this.userRepository.getByUserName(userName);
   }
 
-  async getTokenByUserId(userId: string): Promise<string | undefined> {
-    return this.userRepository.getTokenByUserId(userId);
-  }
-
   async createUser(
     userName: string,
     salt: string,
-    hash: string,
-    token: string
+    hash: string
   ): Promise<User> {
-    return this.userRepository.createUser(userName, salt, hash, token);
+    return this.userRepository.createUser(userName, salt, hash);
   }
 
   async updateUserName(userId: string, newUserName: string): Promise<void> {

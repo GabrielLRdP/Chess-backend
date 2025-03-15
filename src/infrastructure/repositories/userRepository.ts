@@ -9,15 +9,13 @@ export class UserRepository {
   public async createUser(
     userName: string,
     salt: string,
-    hash: string,
-    token: string
+    hash: string
   ): Promise<any> {
     try {
       const user = new UserModel({
         userName: userName,
         hash: hash,
         salt: salt,
-        token: token,
       });
 
       const savedUser = await user.save();
@@ -25,18 +23,11 @@ export class UserRepository {
         savedUser.id,
         savedUser.userName,
         savedUser.hash,
-        savedUser.salt,
-        savedUser.token
+        savedUser.salt
       );
     } catch (error) {
       throw error;
     }
-  }
-  public async getTokenByUserId(
-    userId: string
-  ): Promise<IUser['token'] | undefined> {
-    const userData = await UserModel.findById<IUser>(userId);
-    return userData?.token;
   }
 
   public async updatePassword(

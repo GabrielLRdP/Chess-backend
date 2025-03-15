@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { UserService } from '../../application/services/usersService';
+import { UserService } from '../../../application/services/usersService';
 import { SHA256 } from 'crypto-js';
 import encBase64 from 'crypto-js/enc-base64';
 import uid2 from 'uid2';
-import { UserRepository } from '../../infrastructure/repositories/userRepository';
+import { UserRepository } from '../../../infrastructure/repositories/userRepository';
 
 export const updatePassword = async (req: Request, res: Response) => {
   try {
