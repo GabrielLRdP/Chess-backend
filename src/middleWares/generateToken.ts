@@ -10,12 +10,14 @@ export const generateToken = (
   next: NextFunction
 ) => {
   try {
-    const payload = { userName: req.body.userName, userId: req.body.userId };
+    const payload = {
+      userName: req.body.userName,
+      userId: req.body.userData._id,
+    };
     const accessToken = jwt.sign(
       payload,
       process.env.ACCESS_TOKEN_SECRET as string
     );
-    console.log(accessToken);
     req.body.accessToken = accessToken;
     next();
   } catch (error) {

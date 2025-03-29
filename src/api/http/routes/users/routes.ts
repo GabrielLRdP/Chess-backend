@@ -18,7 +18,7 @@ router.post(
   generateToken,
   userSignup
 );
-router.get('/login', verifyPassword, generateToken, userLogin);
+router.post('/login', verifyPassword, generateToken, userLogin);
 router.patch('/:id/password', authenticateToken, updatePassword);
 router.patch(
   '/:id/userName',
@@ -26,6 +26,6 @@ router.patch(
   isUserNameValid,
   modifyUserName
 );
-router.delete('/:id/deleteAccount', authenticateToken, deleteAccount);
+router.delete('/:id', authenticateToken, deleteAccount);
 
 export default router;
