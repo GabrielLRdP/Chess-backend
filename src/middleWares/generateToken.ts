@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 import { User } from '../domain/entities/User';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
-import { access } from 'fs';
 
 export const generateToken = (
   req: Request,
@@ -12,7 +11,7 @@ export const generateToken = (
   try {
     const payload = {
       userName: req.body.userName,
-      userId: req.body.userData._id,
+      userId: req.body.userData?._id,
     };
     const accessToken = jwt.sign(
       payload,

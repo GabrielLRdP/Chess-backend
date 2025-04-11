@@ -11,13 +11,7 @@ import { generateHash } from '../../../../middleWares/generateHash';
 import { generateToken } from '../../../../middleWares/generateToken';
 
 const router = express.Router();
-router.post(
-  '/signup',
-  isUserNameValid,
-  generateHash,
-  generateToken,
-  userSignup
-);
+router.post('/signup', isUserNameValid, generateHash, userSignup);
 router.post('/login', verifyPassword, generateToken, userLogin);
 router.patch('/:id/password', authenticateToken, updatePassword);
 router.patch(
