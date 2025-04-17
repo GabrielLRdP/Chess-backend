@@ -7,5 +7,8 @@ export const leaveUsersRoom = (
   userMap: Map<string, UserPayload>
 ) => {
   socket.leave('online-users-room');
-  io.to(socket.id).emit('update-users-list', Array.from(userMap.values()));
+  io.to('online-users-room').emit(
+    'update-users-list',
+    Array.from(userMap.values())
+  );
 };

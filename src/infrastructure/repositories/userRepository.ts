@@ -10,7 +10,7 @@ export class UserRepository {
     userName: string,
     salt: string,
     hash: string
-  ): Promise<any> {
+  ): Promise<User> {
     try {
       const user = new UserModel({
         userName: userName,
@@ -20,10 +20,10 @@ export class UserRepository {
 
       const savedUser = await user.save();
       return new User(
-        savedUser.id,
         savedUser.userName,
         savedUser.hash,
-        savedUser.salt
+        savedUser.salt,
+        savedUser.id
       );
     } catch (error) {
       throw error;

@@ -17,8 +17,8 @@ export const userSignup = async (req: Request, res: Response) => {
       process.env.ACCESS_TOKEN_SECRET as string
     );
     res.status(200).json({
-      message: 'User Created ',
-      user: createdUser,
+      message: 'User Created',
+      userData: { userName: createdUser.userName, userId: createdUser.id },
       accessToken: accessToken,
     });
   } catch (error) {

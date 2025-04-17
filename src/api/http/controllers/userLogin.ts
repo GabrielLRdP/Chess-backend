@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { access } from 'fs';
 
 export const userLogin = (req: Request, res: Response) => {
   try {
