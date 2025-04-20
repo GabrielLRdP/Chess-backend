@@ -8,9 +8,10 @@ export const respondToInvitation = (
   data: InvitationResponse
 ) => {
   const sender = userMap.get(socket.id);
-  const targetSocketId = [...userMap.entries()].find(
-    ([, value]) => value.userId === data.fromUserId
-  )?.[0];
+  const targetSocketId = data.opponentSocketId;
+  const receiver = userMap.get(targetSocketId);
+  console.log('sender', sender);
+  console.log('receiver', receiver);
 
   if (!targetSocketId) return;
 
@@ -21,6 +22,6 @@ export const respondToInvitation = (
 };
 
 type InvitationResponse = {
-  fromUserId: string;
+  opponentSocketId: string;
   accepted: boolean;
 };

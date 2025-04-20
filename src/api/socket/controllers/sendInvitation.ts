@@ -16,5 +16,6 @@ export const sendInvitation = (
   io.to(targetSocketId).emit('receive-invitation', {
     fromUserId: sender?.userId,
     fromUserName: sender?.userName,
+    fromSocketId: socket.id,
   });
 };
