@@ -10,8 +10,6 @@ export const respondToInvitation = (
   const sender = userMap.get(socket.id);
   const targetSocketId = data.opponentSocketId;
   const receiver = userMap.get(targetSocketId);
-  console.log('sender', sender);
-  console.log('receiver', receiver);
 
   if (!targetSocketId) return;
 

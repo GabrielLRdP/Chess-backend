@@ -6,6 +6,7 @@ import { leaveUsersRoom } from './handlers/leaveUsersRoom';
 import { sendInvitation } from '../controllers/sendInvitation';
 import { respondToInvitation } from '../controllers/respondToInvitation';
 import { disconnect } from './handlers/disconnect';
+import { makeMove } from '../controllers/makeMove';
 
 const userMap = new Map();
 
@@ -33,6 +34,10 @@ export const onConnection = (io: Server, socket: Socket) => {
 
   socket.on('respond-invitation', (data) => {
     respondToInvitation(io, socket, userMap, data);
+  });
+
+  socket.on('make-move', (data) => {
+    makeMove(socket, data);
   });
 
   socket.on('disconnect', () => {
