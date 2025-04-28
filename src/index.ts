@@ -8,7 +8,7 @@ import { initSocket } from './infrastructure/socket/socketServer';
 
 mongoose.connect(process.env.MONGODB_URI as string);
 
-const port = 3000;
+const port = process.env.PORT;
 const app = express();
 
 const httpServer = createServer(app);
