@@ -6,7 +6,7 @@ import { createServer } from 'node:http';
 import { Server } from 'socket.io';
 import { initSocket } from './infrastructure/socket/socketServer';
 
-mongoose.connect('mongodb://localhost:27017/Chess');
+mongoose.connect(process.env.MONGODB_URI as string);
 
 const port = 3000;
 const app = express();
